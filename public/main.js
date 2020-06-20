@@ -13,11 +13,12 @@ async function postLocation(url = '', location = {}) {
 
 function geoFindMe() {
 
+   const input = document.getElementById('input');
    const status = document.getElementById('status')
    const mapLink = document.getElementById('mapLink')
    const lat = document.getElementById('latitude')
    const lon = document.getElementById('longitude')
-
+   const mood = input.value.trim()
 
    mapLink.href = ''
    mapLink.textContent = ''
@@ -26,7 +27,7 @@ function geoFindMe() {
       const { coords: { latitude }, coords: { longitude }, timestamp } = position
       status.textContent = '';
 
-      const data = { latitude, longitude, timestamp }
+      const data = { latitude, longitude, timestamp, mood }
       postLocation('/api', data)
 
       lat.textContent = latitude.toFixed(2)
@@ -43,6 +44,8 @@ function geoFindMe() {
    if ('geolocation' in navigator) {
       status.textContent = 'Locating…';
       navigator.geolocation.getCurrentPosition(success, error);
+      input.value = ""
+      input.focus()
    } else {
       status.textContent = 'Geolocation is not supported by your browser';
    }
