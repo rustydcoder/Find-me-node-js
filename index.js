@@ -1,4 +1,5 @@
 const express = require('express');
+
 const Datastore = require('nedb'),
    db = new Datastore('database.db'),
    app = express();
@@ -15,4 +16,11 @@ app.post('/api', (req, res) => {
 })
 
 
+app.get('/api', (req, res) => {
+   db.find({}, (err, docs) => {
+      res.json(docs)
+   })
+})
+
 app.listen(3000, console.log(`Running at http://localhost:3000`))
+

@@ -18,7 +18,7 @@ function geoFindMe() {
    const mapLink = document.getElementById('mapLink')
    const lat = document.getElementById('latitude')
    const lon = document.getElementById('longitude')
-   const mood = input.value.trim()
+   const mood = !input.value ? 'Busy' : input.value.trim()
 
    mapLink.href = ''
    mapLink.textContent = ''
