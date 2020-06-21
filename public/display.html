@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>User Log History</h1>
+    <a href="./index.html">back</a>
     <div class="container"></div>
 
     <script>
@@ -27,8 +28,7 @@
           const date = new Date(timestamp);
 
           h3.textContent = "Mood: " + capitalize(mood);
-          location.textContent =
-            "Location: " + latitude + "°, " + longitude + "°";
+          location.innerHTML = `Location: <a href="https://www.openstreetmap.org/#map=18/${latitude}/${longitude}">${latitude}°, ${longitude}°</a>`;
           time.textContent =
             "Time: " + date.toDateString() + " at " + date.toLocaleTimeString();
 
@@ -50,7 +50,7 @@
           .join(" ");
       }
 
-      render();
+      window.onload = render;
     </script>
   </body>
 </html>
